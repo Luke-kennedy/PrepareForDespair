@@ -862,7 +862,7 @@ GameObject:
   - component: {fileID: 1911974078}
   - component: {fileID: 1911974079}
   m_Layer: 0
-  m_Name: alienGreen_stand
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
