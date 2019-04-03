@@ -1,9 +1,9 @@
 ﻿// -----------------------------------------------------------------------------
-#region File Info - RotateAction.cs
+#region File Info - ScaleAction.cs
 // -----------------------------------------------------------------------------
 // Project:     Dino Unity Toolkit
 // Created:     Sarah Herzog 2019
-// Purpose:     Rotates an object
+// Purpose:     Scales an object
 // -----------------------------------------------------------------------------
 #endregion
 // -----------------------------------------------------------------------------
@@ -19,58 +19,44 @@ using UnityEngine;
 
 
 // -----------------------------------------------------------------------------
-#region Component: RotateAction
+#region Component: ScaleAction
 // -----------------------------------------------------------------------------
-[HelpURL("https://github.com/CodingDino/FifeCollege-Unity-DragNDrop/wiki/RotateAction")]
-public class RotateAction : MonoBehaviour
+[HelpURL("https://github.com/CodingDino/FifeCollege-Unity-DragNDrop/wiki/ScaleAction")]
+public class ScaleAction : MonoBehaviour
 {
-
-
-
     // -------------------------------------------------------------------------
     #region Action Functions
     // -------------------------------------------------------------------------
-    public void ActionSetRotationTo(float degrees)
+    public void ActionSetScaleX(float scaleX)
     {
-        transform.rotation = Quaternion.Euler(0, 0, degrees);
+        transform.localScale = new Vector3( scaleX,
+                                            transform.localScale.y,
+                                            transform.localScale.z);
     }
     // -------------------------------------------------------------------------
-    public void ActionRotateBy(float degrees)
+    public void ActionSetScaleY(float scaleY)
     {
-        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, degrees);
+        transform.localScale = new Vector3( transform.localScale.x,
+                                            scaleY,
+                                            transform.localScale.z);
     }
     // -------------------------------------------------------------------------
-    public void ActionRotateTowardsObjectWithTag(string tagName)
+    public void ActionScaleXBy(float scaleX)
     {
-        // Find any object with this tag
-        GameObject objectWithTag = GameObject.FindWithTag(tagName);
-        // If we found an object...
-        if (objectWithTag != null)
-        {
-            // Rotate towards it
-            ActionRotateTowardsObject(objectWithTag);
-        }
+        transform.localScale = new Vector3( transform.localScale.z * scaleX,
+                                            transform.localScale.y,
+                                            transform.localScale.z);
     }
     // -------------------------------------------------------------------------
-    public void ActionRotateTowardsObject(GameObject rotateTowards)
+    public void ActionScaleYBy(float scaleY)
     {
-        Vector3 vectorToTarget = rotateTowards.transform.position - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-    }
-    // -------------------------------------------------------------------------
-    public void ActionRotateTowardMouse()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Vector3 vectorToTarget = mousePosition - transform.position;
-        float angle = Mathf.Atan2(vectorToTarget.y, vectorToTarget.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        transform.localScale = new Vector3( transform.localScale.x,
+                                            transform.localScale.y * scaleY,
+                                            transform.localScale.z);
     }
     // -------------------------------------------------------------------------
     #endregion
     // -------------------------------------------------------------------------
-
-
 }
 // -----------------------------------------------------------------------------
 #endregion
