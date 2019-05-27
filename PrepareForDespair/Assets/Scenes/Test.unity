@@ -64655,7 +64655,7 @@ MonoBehaviour:
   hasMinValue: 1
   minValue: 0
   hasMaxValue: 1
-  maxValue: 1805
+  maxValue: 1800
   saveID: 
   onValueChange:
     m_PersistentCalls:
